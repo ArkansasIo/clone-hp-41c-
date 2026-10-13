@@ -168,6 +168,10 @@ typedef struct
   char *annunciator_image_fn;
   kml_annunciator_t *annunciator [KML_MAX_ANNUNCIATOR];
 
+  // key bindings used by the graphing calculator GUI, keyed by the
+  // key's "standard keycode" (see keyboard.h)
+  char *key_binding [KML_MAX_SCANCODE];
+
   kml_switch_t *kswitch [KML_MAX_SWITCH];
 
   int button_count;
