@@ -1,0 +1,25 @@
+name: Repository integrity
+
+on:
+  push:
+    branches: [main, "codex/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-tree-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run repository integrity tests
+        run: python -m unittest discover -s tests -v
+      - name: Check patch whitespace
+        run: git diff --check
